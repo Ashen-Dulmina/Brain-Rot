@@ -77,12 +77,10 @@ def rConvert(): #this function read and converts things into python
       else: #if the line does not end with a newline
         pass #continue
       
-      if line.startswith("  "): #if line startswith tabspace
-        line = line.replace("  ", "") #replace the tabs with NULL
-      else: #if the line doesnot start with tabspace
-        pass #continues
+      line = line.replace("  ", "") #replace the tabs with NULL
         
       if line.startswith("make"): #if the line startswith make 
+        line = line.replace("--", "#") #replace '--' with #
         line = line.replace("make ", "") #replace 'make ' with NULL
         line = line.replace("be", "=") #replace "be" with "="
         line = line.replace("NOCAP", "True") #replace NOCAP with True
@@ -103,12 +101,10 @@ def rConvert(): #this function read and converts things into python
       else: #if the line does not end with a newline
         pass #continue
       
-      if pline.startswith("  "): #if line startswith tabspace
-        pline = pline.replace("  ", "") #replace the tabs with NULL
-      else: #if the line doesnot start with tabspace
-        pass #continues
+      pline = pline.replace("  ", "") #replace the tabs with NULL
       
       if pline.startswith("freespeech"): #if the line startswith freespeech
+        pline = pline.replace("--", "#") #replace '--' with #
         pline = pline.replace("freespeech", "print") #replace freespeech with print
         pline = pline.split("|") #splits it from the space
         pline = f"{pline[0]}({pline[1]})" #makes a fstring and orders the elements between a bracket
@@ -123,12 +119,15 @@ def rConvert(): #this function read and converts things into python
       else: #if the line does not end with a newline
         pass #continue
       
-      if fline.startswith("  "): #if line startswith tabspace
-        fline = fline.replace("  ", "") #replace the tabs with NULL
-      else: #if the line doesnot start with tabspace
-        pass #continues
-      
+      fline = fline.replace("  ", "") #replace the tabs with NULL
+
       if fline.startswith("mindset"): #if the line startswith mindset
+        fline = fline.replace("--", "#") #replace '--' with #
+        fline = fline.replace(" (", ":") #replace ' (' with :
+        fline = fline.replace("(", ":") #replace '(' with :
+        fline = fline.replace(")", "") #replace ')' with Null
+        fline = fline.replace("[", "(") #replace '[' with (
+        fline = fline.replace("]", ")") #replace '[' with )
         fline = fline.replace("mindset", "def") #replace mindset with function
         print(fline) #prints the line
       else: #if the line does not startswith mindset
@@ -141,12 +140,10 @@ def rConvert(): #this function read and converts things into python
       else: #if the line does not end with a newline
         pass #continue
       
-      if iline.startswith("  "): #if line startswith tabspace
-        iline = iline.replace("  ", "") #replace the tabs with NULL
-      else: #if the line doesnot start with tabspace
-        pass #continues
+      iline = iline.replace("  ", "") #replace the tabs with NULL
       
       if iline.startswith("byAnyChance"): #if the line startswith byAnyChance
+        iline = iline.replace("--", "#") #replace '--' with #
         iline = iline.replace("byAnyChance", "if") #replace byAnyChance with if
         iline = iline.replace("[", "") #replace [ with Null
         iline = iline.replace("]", "") #replace ] with Null
@@ -158,6 +155,9 @@ def rConvert(): #this function read and converts things into python
         iline = iline.replace("isAlpha", ">") #replace isAlpha with >
         iline = iline.replace("isBe//z", "=<") #replace isBe//z with =<
         iline = iline.replace("isAl//z", "=>") #replace isAl//z with =>
+        iline = iline.replace(" (", ":") #replace "(" with :
+        iline = iline.replace("(", ":") #replace " (" with :
+        iline = iline.replace(")", "") #replace ( with Null
         print(iline) #prints the line
       else: #if the line does not startswith byAnyChance
         pass #exit the function
@@ -169,23 +169,48 @@ def rConvert(): #this function read and converts things into python
       else: #if the line does not end with a newline
         pass #continue
       
-      if eline.startswith("  "): #if line startswith tabspace
-        eline = eline.replace("  ", "") #replace the tabs with NULL
-      else: #if the line doesnot start with tabspace
-        pass #continues
+      eline = eline.replace("  ", "") #replace the tabs with NULL
       
-      if eline.startswith("whenItsNot"): #if the line startswith whenItsNot
+      if eline.startswith(") whenItsNot"): #if the line startswith whenItsNot
+        eline = eline.replace("--", "#") #replace '--' with #
         eline = eline.replace("whenItsNot", "else") #replace whenItsNot with else
+        eline = eline.replace("(", ":") #replace '(' with :
+        eline = eline.replace(" (", ":") #replace ' (' with :
+        eline = eline.replace(") ", "") #replace ( with Null
         print(eline) #prints the line
       else: #if the line does not startswith whenItsNot
         pass #exit the function
         
+    def detectBreakSyntax(lineTOscan): #scans the passed line for a possible brake synatxes
+      bline = lineTOscan #reset the variable in a loop
+      if bline.endswith('\n'): #if line endswith a newline 
+        bline = bline.removesuffix('\n') #remove the new line
+      else: #if the line does not end with a newline
+        pass #continue
+      
+      bline = bline.replace("  ", "") #replace the tabs with NULL
+      
+      if bline.startswith("cutThisShit"): #if the line startswith 'cutThisShit'
+        bline = bline.replace("cutThisShit", "break") #replace 'cutThisShit' with break
+        print(bline) #prints the line
+      else: #if the line does not startswith cutThisShit
+        pass #exit the function
     
+    def detectEmptyLines(lineTOscan): #scans the passed line for a possible emptyline
+      emline = lineTOscan #reset the variable in a loop  
+      emline = emline.replace("  ", "") #replace the tabs with NULL
+      if emline.startswith('\n'): #if line startswith newline
+        print('') #prints the line
+      else: #if line does not startswith newline
+        pass #exit the function
+    
+    detectEmptyLines(rotFileSys[lineCounter]) #this is a test
     detectElseStatement(rotFileSys[lineCounter]) #this is a test
     detectIfStatements(rotFileSys[lineCounter]) #this is a test
     detectFunctions(rotFileSys[lineCounter]) #this is a test
     detectPrintCommands(rotFileSys[lineCounter]) #this is a test
     detectVariables(rotFileSys[lineCounter]) #this is a test
+    detectBreakSyntax(rotFileSys[lineCounter]) #this is a test
     
     lineCounter += 1 #moves to the next line
     if lineCounter == len(rotFileSys): #if the linecouners value is equal to the number of lines
