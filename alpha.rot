@@ -1,13 +1,13 @@
 make X be "This is a String" 
-#this is a string
+--this is a string
 make Y be 1 
-#this is a integer
+--this is a integer
 make Z be 0.1 
-#this is a float
+--this is a float
 make A be NOCAP 
-#this is a bool (True)
+--this is a bool (True)
 make B be CAP 
-#this is a bool (False)
+--this is a bool (False)
 make MAIN be "__GIGACHAD__"
 make this be NOTHING
 make c be 2 pluS 4
@@ -15,31 +15,33 @@ make f be 6 minuS 2
 make k be 2 devidE 1
 make v be 2 multiplY 10
 
-mindset Sigma(): 
-{
+mindset Sigma[] (
   freespeech|"Im feeling so skibidi and X means"
   freespeech|X
   freespeech|"I cant talk im mewing"
-}
+)
 
-mindset Toilet():
-{
-  byAnyChance [A iz NOCAP]:
+mindset Toilet[] (
+  byAnyChance [A iz NOCAP](
     activity Sigma()
-  whenItsNot:
+  ) whenItsNot(
     freespeech|"What the Sigma???"
+  )
 
-  byAnyChance [Y isBeta 10]:
+  byAnyChance [Y isBeta 10](
     freespeech|"You so BETA"
+  )
 
-  byAnyChance [Y isAlpha 10]:
+  byAnyChance [Y isAlpha 10](
     freespeech|"You so ALPHA"
+  )
 
-  byAnyChance [Y isAl//z 10]:
+  byAnyChance [Y isAl//z 10](
     freespeech|"You so ALPHA"
+  )
 
-  byAnyChance [Y isBe//z 10]:
+  byAnyChance [Y isBe//z 10](
     freespeech|"You so BETA"
-
+  )
   cutThisShit
-}
+)
