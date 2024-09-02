@@ -44,5 +44,7 @@ mindset Toilet[] (
     freespeech|"You so BETA"
   )
   
-  cutThisShit
+  --cutThisShit
 )
+
+activity Toilet()

@@ -4,6 +4,7 @@
 # [!] = error
 # [^] = comment
 # [-] = instruction
+# [=] = normal
 # [*] = pass (this means something is ok or good)
 
 import sys
@@ -56,6 +57,18 @@ def validateROTfile(): #validates the file before reading and compiling
   return True #return the 1st stage checks are true
 
 
+
+#############################
+#   Write Compiled Files    #
+#############################
+
+def writeCom(Text : str, Line : int):
+  compiledFile = open("compiled.bpy", 'a') #creates the compiled file
+  compiledFile.write(f"{Text}"+'\n') #writes the text with a newline
+  compiledFile.close() #close the file
+  print(f"[=] {Line} Lines have been Compiled and Written.", end='\r') #print a Line count
+ 
+
 #############################
 #        Read&Convert       #
 #############################
@@ -70,13 +83,16 @@ def rConvert(): #this function read and converts things into python
     rotFileSys = open(sys.argv[1], 'r').readlines() #redefined for optimization
     #print(rotFileSys[lineCounter]) #print that line
     
-    def detectVariables(lineTOscan): #scans the passed line for a possible variable
+    def detectVariables(lineTOscan : str, XCount : int): #scans the passed line for a possible variable
+      lineTabCount = 0 #reset the tabcount to zero
       line = lineTOscan #reset the variable in a loop
       if lineTOscan.endswith('\n'): #if line endswith a newline 
         line = lineTOscan.removesuffix('\n') #remove the new line
       else: #if the line does not end with a newline
         pass #continue
       
+      lineTabCount = line.count("  ") #getas the intendation count
+      lineTabN = "  " * lineTabCount #repeats the string for the tabs
       line = line.replace("  ", "") #replace the tabs with NULL
         
       if line.startswith("make"): #if the line startswith make 
@@ -90,17 +106,20 @@ def rConvert(): #this function read and converts things into python
         line = line.replace("minuS", "-") #replace minuS with -
         line = line.replace("devidE", "/") #replace devidE with /
         line = line.replace("multiplY", "*") #replace multiplY with *
-        print(line) #prints the line
+        writeCom(f"{lineTabN}{line}", XCount) #prints the line
       else: #if the line does not startswith make 
         pass #exit the function
     
-    def detectPrintCommands(lineTOscan): #scans the passed line for a possible print commands
+    def detectPrintCommands(lineTOscan : str, XCount : int): #scans the passed line for a possible print commands
+      plineTabCount = 0 #reset the tabcount to zero
       pline = lineTOscan #reset the variable in a loop
       if lineTOscan.endswith('\n'): #if line endswith a newline 
         pline = lineTOscan.removesuffix('\n') #remove the new line
       else: #if the line does not end with a newline
         pass #continue
       
+      plineTabCount = pline.count("  ") #getas the intendation count
+      plineTabN = "  " * plineTabCount #repeats the string for the tabs
       pline = pline.replace("  ", "") #replace the tabs with NULL
       
       if pline.startswith("freespeech"): #if the line startswith freespeech
@@ -108,17 +127,20 @@ def rConvert(): #this function read and converts things into python
         pline = pline.replace("freespeech", "print") #replace freespeech with print
         pline = pline.split("|") #splits it from the space
         pline = f"{pline[0]}({pline[1]})" #makes a fstring and orders the elements between a bracket
-        print(pline) #prints the line
+        writeCom(f"{plineTabN}{pline}", XCount) #prints the line
       else: #if the line does not startswith freespeech
         pass #exit the function
 
-    def detectFunctions(lineTOscan): #scans the passed line for a possible functions
+    def detectFunctions(lineTOscan : str, XCount : int): #scans the passed line for a possible functions
+      flineTabCount = 0 #reset the tabcount to zero
       fline = lineTOscan #reset the variable in a loop
       if lineTOscan.endswith('\n'): #if line endswith a newline 
         fline = lineTOscan.removesuffix('\n') #remove the new line
       else: #if the line does not end with a newline
         pass #continue
       
+      flineTabCount = fline.count("  ") #getas the intendation count
+      flineTabN = "  " * flineTabCount #repeats the string for the tabs
       fline = fline.replace("  ", "") #replace the tabs with NULL
 
       if fline.startswith("mindset"): #if the line startswith mindset
@@ -129,17 +151,20 @@ def rConvert(): #this function read and converts things into python
         fline = fline.replace("[", "(") #replace '[' with (
         fline = fline.replace("]", ")") #replace '[' with )
         fline = fline.replace("mindset", "def") #replace mindset with function
-        print(fline) #prints the line
+        writeCom(f"{flineTabN}{fline}", XCount) #prints the line
       else: #if the line does not startswith mindset
         pass #exit the function
     
-    def detectIfStatements(lineTOscan): #scans the passed line for a possible if statements
+    def detectIfStatements(lineTOscan : str, XCount : int): #scans the passed line for a possible if statements
+      ilineTabCount = 0 #reset the tabcount to zero
       iline = lineTOscan #reset the variable in a loop
       if lineTOscan.endswith('\n'): #if line endswith a newline 
         iline = lineTOscan.removesuffix('\n') #remove the new line
       else: #if the line does not end with a newline
         pass #continue
       
+      ilineTabCount = iline.count("  ") #getas the intendation count
+      ilineTabN = "  " * ilineTabCount #repeats the string for the tabs
       iline = iline.replace("  ", "") #replace the tabs with NULL
       
       if iline.startswith("byAnyChance"): #if the line startswith byAnyChance
@@ -153,22 +178,25 @@ def rConvert(): #this function read and converts things into python
         iline = iline.replace("NOTHING", "None") #replace NOTHING with None
         iline = iline.replace("isBeta", "<") #replace isBeta with <
         iline = iline.replace("isAlpha", ">") #replace isAlpha with >
-        iline = iline.replace("isBe//z", "=<") #replace isBe//z with =<
-        iline = iline.replace("isAl//z", "=>") #replace isAl//z with =>
+        iline = iline.replace("isBe//z", "<=") #replace isBe//z with =<
+        iline = iline.replace("isAl//z", ">=") #replace isAl//z with =>
         iline = iline.replace(" (", ":") #replace "(" with :
         iline = iline.replace("(", ":") #replace " (" with :
         iline = iline.replace(")", "") #replace ( with Null
-        print(iline) #prints the line
+        writeCom(f"{ilineTabN}{iline}", XCount) #prints the line
       else: #if the line does not startswith byAnyChance
         pass #exit the function
       
-    def detectElseStatement(lineTOscan): #scans the passed line for a possible else statements
+    def detectElseStatement(lineTOscan : str, XCount : int): #scans the passed line for a possible else statements
+      elineTabCount = 0 #reset the tabcount to zero
       eline = lineTOscan #reset the variable in a loop
       if lineTOscan.endswith('\n'): #if line endswith a newline 
         eline = lineTOscan.removesuffix('\n') #remove the new line
       else: #if the line does not end with a newline
         pass #continue
       
+      elineTabCount = eline.count("  ") #getas the intendation count
+      elineTabN = "  " * elineTabCount #repeats the string for the tabs
       eline = eline.replace("  ", "") #replace the tabs with NULL
       
       if eline.startswith(") whenItsNot"): #if the line startswith whenItsNot
@@ -177,40 +205,63 @@ def rConvert(): #this function read and converts things into python
         eline = eline.replace("(", ":") #replace '(' with :
         eline = eline.replace(" (", ":") #replace ' (' with :
         eline = eline.replace(") ", "") #replace ( with Null
-        print(eline) #prints the line
+        writeCom(f"{elineTabN}{eline}", XCount) #prints the line
       else: #if the line does not startswith whenItsNot
         pass #exit the function
         
-    def detectBreakSyntax(lineTOscan): #scans the passed line for a possible brake synatxes
+    def detectBreakSyntax(lineTOscan : str, XCount : int): #scans the passed line for a possible brake synatxes
+      blineTabCount = 0 #reset the tabcount to zero
       bline = lineTOscan #reset the variable in a loop
       if bline.endswith('\n'): #if line endswith a newline 
         bline = bline.removesuffix('\n') #remove the new line
       else: #if the line does not end with a newline
         pass #continue
       
+      blineTabCount = bline.count("  ") #getas the intendation count
+      blineTabN = "  " * blineTabCount #repeats the string for the tabs
       bline = bline.replace("  ", "") #replace the tabs with NULL
       
       if bline.startswith("cutThisShit"): #if the line startswith 'cutThisShit'
         bline = bline.replace("cutThisShit", "break") #replace 'cutThisShit' with break
-        print(bline) #prints the line
+        writeCom(f"{blineTabN}{bline}", XCount) #prints the line
       else: #if the line does not startswith cutThisShit
         pass #exit the function
     
-    def detectEmptyLines(lineTOscan): #scans the passed line for a possible emptyline
+    def detectEmptyLines(lineTOscan : str, XCount : int): #scans the passed line for a possible emptyline
       emline = lineTOscan #reset the variable in a loop  
       emline = emline.replace("  ", "") #replace the tabs with NULL
       if emline.startswith('\n'): #if line startswith newline
-        print('') #prints the line
+        writeCom("", XCount) #prints the line
       else: #if line does not startswith newline
         pass #exit the function
+      
+    def detectEmptyLines(lineTOscan : str, XCount : int): #scans the passed line for a possible function caller
+      cline = lineTOscan #reset the variable in a loop  
+      clineTabCount = 0 #reset the tabcount to zero
+      
+      if lineTOscan.endswith('\n'): #if line endswith a newline 
+        cline = lineTOscan.removesuffix('\n') #remove the new line
+      else: #if the line does not end with a newline
+        pass #continue
+      
+      clineTabCount = cline.count("  ") #getas the intendation count
+      clineTabN = "  " * clineTabCount #repeats the string for the tabs
+      cline = cline.replace("  ", "") #replace the tabs with NULL
+      
+      if cline.startswith("activity"): #if the line startswith whenItsNot
+        cline = cline.replace("activity ", "") #replace 'activity ' with null
+        writeCom(f"{clineTabN}{cline}", XCount) #prints the line
+      else: #if the line does not startswith whenItsNot
+        pass #exit the function
+      
     
-    detectEmptyLines(rotFileSys[lineCounter]) #this is a test
-    detectElseStatement(rotFileSys[lineCounter]) #this is a test
-    detectIfStatements(rotFileSys[lineCounter]) #this is a test
-    detectFunctions(rotFileSys[lineCounter]) #this is a test
-    detectPrintCommands(rotFileSys[lineCounter]) #this is a test
-    detectVariables(rotFileSys[lineCounter]) #this is a test
-    detectBreakSyntax(rotFileSys[lineCounter]) #this is a test
+    detectEmptyLines(rotFileSys[lineCounter], lineCounter) #this is a test
+    detectElseStatement(rotFileSys[lineCounter], lineCounter) #this is a test
+    detectIfStatements(rotFileSys[lineCounter], lineCounter) #this is a test
+    detectFunctions(rotFileSys[lineCounter], lineCounter) #this is a test
+    detectPrintCommands(rotFileSys[lineCounter], lineCounter) #this is a test
+    detectVariables(rotFileSys[lineCounter], lineCounter) #this is a test
+    detectBreakSyntax(rotFileSys[lineCounter], lineCounter) #this is a test
     
     lineCounter += 1 #moves to the next line
     if lineCounter == len(rotFileSys): #if the linecouners value is equal to the number of lines
