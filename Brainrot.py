@@ -265,6 +265,7 @@ def rConvert(): #this function read and converts things into python
     
     lineCounter += 1 #moves to the next line
     if lineCounter == len(rotFileSys): #if the linecouners value is equal to the number of lines
+      os.system("python compiled.bpy")
       break #exit the loop
     else: #if the linecouners value is not equal to the number of lines
       continue #continue the loop
