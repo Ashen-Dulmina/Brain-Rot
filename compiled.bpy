@@ -1,0 +1,29 @@
+X = "This is a String" 
+Y = 1 
+Z = 0.1 
+A = True 
+B = False 
+MAIN = "__GIGACHAD__"
+this = None
+c = 2 + 4
+f = 6 - 2
+k = 2 / 1
+v = 2 * 10
+def Sigma():
+  print("Im feeling so skibidi and X means")
+  print(X)
+  print("I cant talk im mewing")
+def Toilet():
+  if A == True:
+    Sigma()
+  else:
+    print("What the Sigma???")
+  if Y < 10:
+    print("You so BETA")
+  if Y > 10:
+    print("You so ALPHA")
+  if Y >= 10:
+    print("You so ALPHA")
+  if Y <= 10:
+    print("You so BETA")
+Toilet()
