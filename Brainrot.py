@@ -15,11 +15,11 @@ import os
 #############################
 
 def validateROTfile(): #validates the file before reading and compiling
-  if len(sys.argv) < 2 : #checks if the number of arguments is less than 2
+  if len(sys.argv) < 4 : #checks if the number of arguments is less than 2
     print("[!] Minus Aura detected ! ...")
     print("[!] Brainrot Compiler needs one or more arguments to oparate.")
     print("[!] No argument has been passed to the compiler.")
-    print("[-] Brainrot <filename.rot>") #error message for no arguments
+    print("[-] Brainrot <filename.rot> <compiled_file name> <autorun(y or n)>") #error message for no arguments
     print("[^] Better luck next time..")
     exit(1) #exits the program code - 1
   else: #if the number of arguments are greater than 2 or equal to 2
@@ -63,7 +63,7 @@ def validateROTfile(): #validates the file before reading and compiling
 #############################
 
 def writeCom(Text : str, Line : int):
-  compiledFile = open("compiled.bpy", 'a') #creates the compiled file
+  compiledFile = open(f"{sys.argv[2]}.bpy", 'a') #creates the compiled file
   compiledFile.write(f"{Text}"+'\n') #writes the text with a newline
   compiledFile.close() #close the file
   print(f"[+] {Line} Lines have been Compiled and Written.", end='\r') #print a Line count
@@ -74,14 +74,10 @@ def writeCom(Text : str, Line : int):
 #############################
 
 def rConvert(): #this function read and converts things into python
-  rotFileSys = open(sys.argv[1], 'r').readlines() #gets the rot file from args and reads it line by line
-  convPyFile = f"{sys.argv[1].removesuffix('.rot')}.py" #converts the filename to a .py file
-  
-  #test loop
   lineCounter = 0 #the line counter component
+  
   while True:
-    rotFileSys = open(sys.argv[1], 'r').readlines() #redefined for optimization
-    #print(rotFileSys[lineCounter]) #print that line
+    rotFileSys = open(sys.argv[1], 'r').readlines() #gets the rot file from args and reads it line by line
     
     def detectVariables(lineTOscan : str, XCount : int): #scans the passed line for a possible variable
       lineTabCount = 0 #reset the tabcount to zero
@@ -198,6 +194,38 @@ def rConvert(): #this function read and converts things into python
         writeCom(f"{elineTabN}{eline}", XCount) #prints the line
       else: #if the line does not startswith whenItsNot
         pass #exit the function
+      
+    
+    def detectElifStatements(lineTOscan : str, XCount : int): #scans the passed line for a possible Elif statements
+      eiline = lineTOscan #reset the variable in a loop
+      eilineTabCount = 0 #reset the tabcount to zero (avoid loop recycling)
+      
+      eiline = lineTOscan.removesuffix('\n') #remove the new line at the end
+      
+      eilineTabCount = eiline.count("  ") #getas the intendation count
+      eilineTabN = "  " * eilineTabCount #repeats the string for the tabs
+      eiline = eiline.replace("  ", "") #replace the tabs with NULL
+      
+      if eiline.startswith(") ifNotByAnyChance"): #if the line startswith ifNotByAnyChance
+        eiline = eiline.replace("--", "#") #replace '--' with #
+        eiline = eiline.replace("ifNotByAnyChance", "elif") #replace ifNotByAnyChance with else
+        eiline = eiline.replace("(", ":") #replace '(' with :
+        eiline = eiline.replace(" (", ":") #replace ' (' with :
+        eiline = eiline.replace(") ", "") #replace ( with Null
+        eiline = eiline.replace("[", "") #replace [ with Null
+        eiline = eiline.replace("]", "") #replace ] with Null
+        eiline = eiline.replace("iz", "==") #replace iz with ==
+        eiline = eiline.replace("NOCAP", "True") #replace NOCAP with True
+        eiline = eiline.replace("CAP", "False") #replace CAP with False
+        eiline = eiline.replace("NOTHING", "None") #replace NOTHING with None
+        eiline = eiline.replace("isBeta", "<") #replace isBeta with <
+        eiline = eiline.replace("isAlpha", ">") #replace isAlpha with >
+        eiline = eiline.replace("isBe//z", "<=") #replace isBe//z with =<
+        eiline = eiline.replace("isAl//z", ">=") #replace isAl//z with =>
+        writeCom(f"{eilineTabN}{eiline}", XCount) #prints the line
+      else: #if the line does not startswith ifNotByAnyChance
+        pass #exit the function
+    
         
     def detectBreakSyntax(lineTOscan : str, XCount : int): #scans the passed line for a possible brake synatxes
       blineTabCount = 0 #reset the tabcount to zero
@@ -210,6 +238,7 @@ def rConvert(): #this function read and converts things into python
       bline = bline.replace("  ", "") #replace the tabs with NULL
       
       if bline.startswith("cutThisShit"): #if the line startswith 'cutThisShit'
+        bline = bline.replace("--", "#") #replace '--' with #
         bline = bline.replace("cutThisShit", "break") #replace 'cutThisShit' with break
         writeCom(f"{blineTabN}{bline}", XCount) #prints the line
       else: #if the line does not startswith cutThisShit
@@ -235,6 +264,7 @@ def rConvert(): #this function read and converts things into python
       
       if cline.startswith("activity"): #if the line startswith aactivity
         cline = cline.replace("activity ", "") #replace 'activity ' with null
+        cline = cline.replace("--", "#") #replace '--' with #
         writeCom(f"{clineTabN}{cline}", XCount) #prints the line
       else: #if the line does not startswith activity
         pass #exit the function
@@ -250,6 +280,7 @@ def rConvert(): #this function read and converts things into python
       qline = qline.replace("  ", "") #replace the tabs with NULL
       
       if qline.startswith("EscapeTheMatrix"): #if the line startswith EscapeTheMatrix
+        qline = qline.replace("--", "#") #replace '--' with #
         qline = qline.replace("EscapeTheMatrix", "quit") #replace 'EscapeTheMatrix' with 'quit'
         writeCom(f"{qlineTabN}{qline}", XCount) #prints the line
       else: #if the line does not startswith EscapeTheMatrix
@@ -267,12 +298,13 @@ def rConvert(): #this function read and converts things into python
       paline = paline.replace("  ", "") #replace the tabs with NULL
       
       if paline.startswith("ISkip"): #if the line startswith ISkip
+        paline = paline.replace("--", "#") #replace '--' with #
         paline = paline.replace("ISkip", "pass") #replace 'ISkip' with 'pass'
         writeCom(f"{palineTabN}{paline}", XCount) #prints the line
       else: #if the line does not startswith ISkip
         pass #exit the function
       
-    
+
     def detectContinueSyntaxes(lineTOscan : str, XCount : int): #scans the passed line for a possible continue syntaxes
       coline = lineTOscan #reset the variable in a loop
       colineTabCount = 0 #reset the tabcount to zero (avoid loop recycling)
@@ -284,12 +316,14 @@ def rConvert(): #this function read and converts things into python
       coline = coline.replace("  ", "") #replace the tabs with NULL
       
       if coline.startswith("KeepRollin"): #if the line startswith KeepRollin
+        coline = coline.replace("--", "#") #replace '--' with #
         coline = coline.replace("KeepRollin", "continue") #replace 'KeepRollin' with 'continue'
         writeCom(f"{colineTabN}{coline}", XCount) #prints the line
       else: #if the line does not startswith KeepRollin
         pass #exit the function
       
       
+    detectElifStatements(rotFileSys[lineCounter], lineCounter) #this is a test
     detectContinueSyntaxes(rotFileSys[lineCounter], lineCounter) #this is a test
     detectPassSyntaxes(rotFileSys[lineCounter], lineCounter) #this is a test
     detectQuitSyntaxes(rotFileSys[lineCounter], lineCounter) #this is a test
@@ -306,9 +340,9 @@ def rConvert(): #this function read and converts things into python
     if lineCounter == len(rotFileSys): #if the linecouners value is equal to the number of lines
       print("")
       print("[+] Compiling Into .bpy Done!")
-      print("")
-      print("")
-      os.system("python compiled.bpy")
+      print("[^] You can run your compiled file using the below command")
+      print(f"[-] python {sys.argv[2]}.bpy")
+      print("")    
       break #exit the loop
     else: #if the linecouners value is not equal to the number of lines
       continue #continue the loop
@@ -320,5 +354,9 @@ def rConvert(): #this function read and converts things into python
 ############
 if validateROTfile() == True:
   rConvert()
+  if sys.argv[3] == "Y" or sys.argv[3] == "y": #if the autorun argument is true
+    os.system(f"python {sys.argv[2]}.bpy") #run the file
+  elif sys.argv[3] == "N" or sys.argv[3] == "n": #if the autorun argument is false
+    pass #continue
 else:
   print("Validation Failed!")
