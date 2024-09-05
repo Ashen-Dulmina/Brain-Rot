@@ -42,6 +42,8 @@ mindset Toilet[] (
 
   byAnyChance [Y isBe//z 10](
     freespeech|"You so BETA"
+  ) ifNotByAnyChance [X iz "This is a String"](
+    freespeech|"Why though............."
   )
   
   --cutThisShit
