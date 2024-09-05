@@ -98,7 +98,7 @@ def rConvert(): #this function read and converts things into python
         line = line.replace("NOTHING", "None") #replace NOTHING with None
         line = line.replace("pluS", "+") #replace pluS with +
         line = line.replace("minuS", "-") #replace minuS with -
-        line = line.replace("devidE", "/") #replace devidE with /
+        line = line.replace("dividE", "/") #replace devidE with /
         line = line.replace("multiplY", "*") #replace multiplY with *
         writeCom(f"{lineTabN}{line}", XCount) #prints the line
       else: #if the line does not startswith make 
