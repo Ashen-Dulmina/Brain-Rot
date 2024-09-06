@@ -116,6 +116,10 @@ def rConvert(): #this function read and converts things into python
       
       if pline.startswith("freespeech"): #if the line startswith freespeech
         pline = pline.replace("--", "#") #replace '--' with #
+        pline = pline.replace("pluS", "+") #replace pluS with +
+        pline = pline.replace("minuS", "-") #replace minuS with -
+        pline = pline.replace("dividE", "/") #replace devidE with /
+        pline = pline.replace("multiplY", "*") #replace multiplY with *
         pline = pline.replace("freespeech", "print") #replace freespeech with print
         pline = pline.split("|") #splits it from the space
         pline = f"{pline[0]}({pline[1]})" #makes a fstring and orders the elements between a bracket
