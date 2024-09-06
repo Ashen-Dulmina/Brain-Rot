@@ -121,7 +121,7 @@ def rConvert(): #this function read and converts things into python
         pline = pline.replace("dividE", "/") #replace devidE with /
         pline = pline.replace("multiplY", "*") #replace multiplY with *
         pline = pline.replace("freespeech", "print") #replace freespeech with print
-        pline = pline.split("|") #splits it from the space
+        pline = pline.split("||") #splits it from the |
         pline = f"{pline[0]}({pline[1]})" #makes a fstring and orders the elements between a bracket
         writeCom(f"{plineTabN}{pline}", XCount) #prints the line
       else: #if the line does not startswith freespeech
@@ -283,11 +283,11 @@ def rConvert(): #this function read and converts things into python
       qlineTabN = "  " * qlineTabCount #repeats the string for the tabs
       qline = qline.replace("  ", "") #replace the tabs with NULL
       
-      if qline.startswith("EscapeTheMatrix"): #if the line startswith EscapeTheMatrix
+      if qline.startswith("touchGrass"): #if the line startswith touchGrass
         qline = qline.replace("--", "#") #replace '--' with #
-        qline = qline.replace("EscapeTheMatrix", "quit") #replace 'EscapeTheMatrix' with 'quit'
+        qline = qline.replace("touchGrass", "quit") #replace 'touchGrass' with 'quit'
         writeCom(f"{qlineTabN}{qline}", XCount) #prints the line
-      else: #if the line does not startswith EscapeTheMatrix
+      else: #if the line does not startswith touchGrass
         pass #exit the function
       
     
@@ -327,6 +327,26 @@ def rConvert(): #this function read and converts things into python
         pass #exit the function
       
       
+    def detectBypassBlocks(lineTOscan : str, XCount : int): #scans the passed line for a possible bypass blocks
+      bbline = lineTOscan #reset the variable in a loop
+      bblineTabCount = 0 #reset the tabcount to zero (avoid loop recycling)
+      
+      bbline = lineTOscan.removesuffix('\n') #remove the new line at the end
+      
+      bblineTabCount = bbline.count("  ") #getas the intendation count
+      bblineTabN = "  " * bblineTabCount #repeats the string for the tabs
+      bbline = bbline.replace("  ", "") #replace the tabs with NULL
+      
+      if bbline.startswith("bypassBlock"): #if the line startswith bypassBlock
+        bbline = bbline.replace("--", "#") #replace '--' with #
+        bbline = bbline.split("||") #split the line from the |
+        bbline = bbline[1] #gets the second part of the above split
+        writeCom(f"{bblineTabN}{bbline}", XCount) #writes theline
+      else: #if the line does not startswith bypassBlock
+        pass #exit the function
+      
+      
+    detectBypassBlocks(rotFileSys[lineCounter], lineCounter) #this is a test
     detectElifStatements(rotFileSys[lineCounter], lineCounter) #this is a test
     detectContinueSyntaxes(rotFileSys[lineCounter], lineCounter) #this is a test
     detectPassSyntaxes(rotFileSys[lineCounter], lineCounter) #this is a test

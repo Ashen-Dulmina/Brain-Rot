@@ -16,34 +16,34 @@ make k be 2 devidE 1
 make v be 2 multiplY 10
 
 mindset Sigma[] (
-  freespeech|"Im feeling so skibidi and X means"
-  freespeech|X
-  freespeech|"I cant talk im mewing"
+  freespeech||"Im feeling so skibidi and X means"
+  freespeech||X
+  freespeech||"I cant talk im mewing"
 )
 
 mindset Toilet[] (
   byAnyChance [A iz NOCAP](
     activity Sigma()
   ) whenItsNot(
-    freespeech|"What the Sigma???"
+    freespeech||"What the Sigma???"
   )
 
   byAnyChance [Y isBeta 10](
-    freespeech|"You so BETA"
+    freespeech||"You so BETA"
   )
 
   byAnyChance [Y isAlpha 10](
-    freespeech|"You so ALPHA"
+    freespeech||"You so ALPHA"
   )
 
   byAnyChance [Y isAl//z 10](
-    freespeech|"You so ALPHA"
+    freespeech||"You so ALPHA"
   )
 
   byAnyChance [Y isBe//z 10](
-    freespeech|"You so BETA"
+    freespeech||"You so BETA"
   ) ifNotByAnyChance [X iz "This is a String"](
-    freespeech|"Why though............."
+    freespeech||"Why though............."
   )
   
   --cutThisShit
