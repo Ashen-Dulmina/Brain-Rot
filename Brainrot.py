@@ -6,9 +6,51 @@
 # [-] = instruction
 # [+] = normal
 # [*] = pass (this means something is ok or good)
+# [=] = Update or Notification
 
+from urllib import request
+import requests
 import sys
 import os
+
+
+#############################
+#       CheckVersion        #
+#############################
+
+def checkVersion(): #Checks if the version is stable and up to date
+  localVersion = open("VERSION", 'r').read() #read the local VERSION file for version data
+  remoteVersion = requests.get('https://raw.githubusercontent.com/Ashen-Dulmina/Brain-Rot/main/VERSION').text #read the remote VERSION file for version data
+  remoteVersion = remoteVersion.removesuffix('\n') #removes the newline fron the end
+  
+  if remoteVersion.endswith("s") or remoteVersion.endswith("a"): #if the version is alpha or beta
+    quit #quit the functioj
+  elif remoteVersion.endswith("b"): #if the version is stable
+    localVersion = localVersion.split("-") #plits the linr from the '-'
+    remoteVersion = remoteVersion.split("-") #plits the linr from the '-'
+    
+    if float(localVersion[0]) < float(remoteVersion[0]) : #if the local version is lower than the latest release
+      print(f"[=] Your Current Version is {localVersion[0]}-{localVersion[1]}.") #prints the current version
+      print(f"[=] The Latest Release is {remoteVersion[0]}-{remoteVersion[1]}.") #prints the remote version
+      print(f"[=] Please Update to Version {remoteVersion[0]}-{remoteVersion[1]} for New Features and Major Bug Fixes.") #pints the update notice
+      print('\n') #prints a newline at the end
+    else: #if the version is up to date
+      pass #continue
+
+
+
+#############################
+#      CheckInternet        #
+#############################
+
+def checkInternetConnectivity(): #Checks internet Connectivity to check for updates
+  try:
+    request.urlopen('https://google.com', timeout=3) #tries to ping googles DNS server
+    return True #is it could return true
+  except request.URLError as err:  #if it fails
+    return False #is it couldn't return false
+
+
 
 #############################
 #    validatingROTfiles     #
@@ -373,14 +415,23 @@ def rConvert(): #this function read and converts things into python
 
 
   
-############
-############
-############
-if validateROTfile() == True:
-  rConvert()
-  if sys.argv[3] == "Y" or sys.argv[3] == "y": #if the autorun argument is true
-    os.system(f"python {sys.argv[2]}.bpy") #run the file
-  elif sys.argv[3] == "N" or sys.argv[3] == "n": #if the autorun argument is false
-    pass #continue
-else:
-  print("Validation Failed!")
+#############################
+#       StartToRun          #
+#############################
+
+def runnerController():
+  if validateROTfile() == True: #if the file validation is successful
+    if checkInternetConnectivity() == True: #if internet connectivity is ok
+      checkVersion() #chck the version
+    else: #if internet connectivity is not ok
+      pass #continue
+    rConvert() #compile the file
+    if sys.argv[3] == "Y" or sys.argv[3] == "y": #if the autorun argument is true
+      os.system(f"python {sys.argv[2]}.bpy") #run the file
+    elif sys.argv[3] == "N" or sys.argv[3] == "n": #if the autorun argument is false
+      pass #continue
+  else: #if the file validation fails
+    print("Validation Failed!") #prints that it failed
+    
+
+runnerController()
