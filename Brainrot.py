@@ -23,9 +23,9 @@ def checkVersion(): #Checks if the version is stable and up to date
   remoteVersion = requests.get('https://raw.githubusercontent.com/Ashen-Dulmina/Brain-Rot/main/VERSION').text #read the remote VERSION file for version data
   remoteVersion = remoteVersion.removesuffix('\n') #removes the newline fron the end
   
-  if remoteVersion.endswith("s") or remoteVersion.endswith("a"): #if the version is alpha or beta
+  if remoteVersion.endswith("b") or remoteVersion.endswith("a"): #if the version is alpha or beta
     quit #quit the functioj
-  elif remoteVersion.endswith("b"): #if the version is stable
+  elif remoteVersion.endswith("s"): #if the version is stable
     localVersion = localVersion.split("-") #plits the linr from the '-'
     remoteVersion = remoteVersion.split("-") #plits the linr from the '-'
     
@@ -34,7 +34,10 @@ def checkVersion(): #Checks if the version is stable and up to date
       print(f"[=] The Latest Release is {remoteVersion[0]}-{remoteVersion[1]}.") #prints the remote version
       print(f"[=] Please Update to Version {remoteVersion[0]}-{remoteVersion[1]} for New Features and Major Bug Fixes.") #pints the update notice
       print('\n') #prints a newline at the end
-    else: #if the version is up to date
+    elif float(localVersion[0]) == float(remoteVersion[0]) : #if the local version is the latest release
+      print("[=] Your are Up-to-Date !")
+      print('\n') #prints a newline at the end
+    else: #if the version somehow greater to date
       pass #continue
 
 
