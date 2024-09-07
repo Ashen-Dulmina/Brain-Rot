@@ -34,7 +34,10 @@ def checkVersion(): #Checks if the version is stable and up to date
       print(f"[=] The Latest Release is {remoteVersion[0]}-{remoteVersion[1]}.") #prints the remote version
       print(f"[=] Please Update to Version {remoteVersion[0]}-{remoteVersion[1]} for New Features and Major Bug Fixes.") #pints the update notice
       print('\n') #prints a newline at the end
-    else: #if the version is up to date
+    elif float(localVersion[0]) == float(remoteVersion[0]) : #if the local version is the latest release
+      print("[=] Your are Up-to-Date !")
+      print('\n') #prints a newline at the end
+    else: #if the version somehow greater to date
       pass #continue
 
 
