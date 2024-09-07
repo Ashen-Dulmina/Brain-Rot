@@ -45,7 +45,7 @@ def checkVersion(): #Checks if the version is stable and up to date
 
 def checkInternetConnectivity(): #Checks internet Connectivity to check for updates
   try:
-    request.urlopen('https://google.com', timeout=3) #tries to ping googles DNS server
+    request.urlopen('https://8.8.8.8', timeout=3) #tries to ping googles DNS server
     return True #is it could return true
   except request.URLError as err:  #if it fails
     return False #is it couldn't return false
