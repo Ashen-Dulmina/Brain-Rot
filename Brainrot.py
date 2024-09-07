@@ -97,8 +97,7 @@ def validateROTfile(): #validates the file before reading and compiling
   #3.the file exists
   print("[*] Pre-File-Validation Colmpleted !")#return the 1st win flag
   print("[^] This does not mean the script is verified.")
-  print("")
-  print("")
+  print('\n') #prints a newline at the end
   return True #return the 1st stage checks are true
 
 
@@ -411,7 +410,7 @@ def rConvert(): #this function read and converts things into python
       print("[+] Compiling Into .bpy Done!")
       print("[^] You can run your compiled file using the below command")
       print(f"[-] python {sys.argv[2]}.bpy")
-      print("")    
+      print('\n') #prints a newline at the end
       break #exit the loop
     else: #if the linecouners value is not equal to the number of lines
       continue #continue the loop
