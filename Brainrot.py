@@ -313,6 +313,8 @@ def rConvert(): #this function read and converts things into python
       if cline.startswith("activity"): #if the line startswith aactivity
         cline = cline.replace("activity ", "") #replace 'activity ' with null
         cline = cline.replace("--", "#") #replace '--' with #
+        cline = cline.replace("[", "(") #replace '[' with (
+        cline = cline.replace("]", ")") #replace ']' with )
         writeCom(f"{clineTabN}{cline}", XCount) #prints the line
       else: #if the line does not startswith activity
         pass #exit the function
