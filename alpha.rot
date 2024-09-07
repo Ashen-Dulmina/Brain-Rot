@@ -1,52 +1,34 @@
-make X be "This is a String" 
---this is a string
-make Y be 1 
---this is a integer
-make Z be 0.1 
---this is a float
-make A be NOCAP 
---this is a bool (True)
-make B be CAP 
---this is a bool (False)
-make MAIN be "__GIGACHAD__"
-make this be NOTHING
-make c be 2 pluS 4
-make f be 6 minuS 2
-make k be 2 devidE 1
-make v be 2 multiplY 10
+--This is the official example script for Brain-Rot.
+--This file is only used for tests and for better understanding of the coding structure.
+--Clear the pre-written code and "Start Cooking!".
+--\credits : @Ashen-Dulmina, @Infroid-Coder.
 
-mindset Sigma[] (
-  freespeech||"Im feeling so skibidi and X means"
-  freespeech||X
-  freespeech||"I cant talk im mewing"
+make x be "Legends Never Die.."
+make y be 1 
+make z be 0.5 
+make a be NOCAP 
+make b be CAP
+make c be NOTHING
+make d be 7 pluS 7
+make e be 21 dividE 3
+
+freespeech||"Hello World!"
+freespeech||1
+freespeech||x
+freespeech||e
+
+mindset Main[] (
+  freespeech||"This is the main Function"
 )
 
-mindset Toilet[] (
-  byAnyChance [A iz NOCAP](
-    activity Sigma()
-  ) whenItsNot(
-    freespeech||"What the Sigma???"
-  )
-
-  byAnyChance [Y isBeta 10](
-    freespeech||"You so BETA"
-  )
-
-  byAnyChance [Y isAlpha 10](
-    freespeech||"You so ALPHA"
-  )
-
-  byAnyChance [Y isAl//z 10](
-    freespeech||"You so ALPHA"
-  )
-
-  byAnyChance [Y isBe//z 10](
-    freespeech||"You so BETA"
-  ) ifNotByAnyChance [X iz "This is a String"](
-    freespeech||"Why though............."
-  )
-  
-  --cutThisShit
+mindset notMain[] (
+  freespeech||"This is the main Function"
 )
 
-activity Toilet()
+byAnyChance [a iz NOCAP](
+  activity Main[]
+) ifNotByAnyChance [a iz CAP](
+  activity notMain[]
+) whenItsNot(
+  freespeech||"neither"
+)
