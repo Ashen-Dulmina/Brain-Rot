@@ -7,6 +7,7 @@
 # [+] = normal
 # [*] = pass (this means something is ok or good)
 # [=] = Update or Notification
+#/credits: @Ashen-Dulmina
 
 from urllib import request
 import requests
