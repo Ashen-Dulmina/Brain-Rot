@@ -1,0 +1,16 @@
+{
+    "package_name": "Official Brain-Make Test Package",
+    "package_author": "@Ashen-Dulmina, @Infroid-Coder",
+    "package_version": "1.0",
+    "package_element_count": 2,
+    "elements": {
+        "file_1": {
+            "file_name": "test_file_1.py",
+            "file_content": "cHJpbnQoInRleHQiKQ=="
+        },
+        "file_2": {
+            "file_name": "test_file_2.txt",
+            "file_content": "VGVzdA=="
+        }
+    }
+}
