@@ -1,6 +1,7 @@
 #This is the official CLI tool for Brain-Rot
 #/credits: @Ashen-Dulmina
 
+from colorama import init, Fore, Back, Style
 import requests
 import base64
 import json
@@ -8,7 +9,7 @@ import sys
 import os
 
 os.system('cls' if os.name == 'nt' else 'clear') #clears the console in the begining
-
+init()
 
 
 #############################
@@ -131,8 +132,53 @@ def establish_local(): #this function establishes local packages
       file_content = pkg_data["elements"][f"file_{i+1}"].get("file_content").encode() #get the encoded respective files content
       file_content = base64.b64decode(file_content).decode('utf-8') #decodes and changes it into a string
       filename.write(file_content) #writes the file
+      print(f"[*] File Created -- {pkg_data['elements'][f'file_{i+1}'].get('file_name')}") #prints the filename along a just created msg
       filename.close() #closes the file
   else: #if validation is not doen
     print("[!] Source action failed ....") #source action error
   
 
+
+#############################
+#  Establish Local Package  #
+#############################
+
+def establish_remote(): #this function establishes remote packages
+  remote_url = input(f"{Fore.YELLOW}Enter URL to the remote package : {Fore.RESET}") #gets the remote url
+  #https://raw.githubusercontent.com/Ashen-Dulmina/Brain-Rot/main/CLI/test.json
+  remote_pkg_data = requests.get(remote_url).json() #fetches the json data
+  
+  os.system('cls' if os.name == 'nt' else 'clear') #clears the console
+  print(f"Current package's name : " + Fore.CYAN + remote_pkg_data['package_name'] + Fore.RESET) #prints package name
+  print(f"Current package's author : " + Fore.CYAN + remote_pkg_data['package_author'] + Fore.RESET) #prints package author
+  print(f"Current package's version : " + Fore.CYAN + remote_pkg_data['package_version'] + Fore.RESET) #prints package version
+  print(f"Current package's file count : " + Fore.CYAN + str(remote_pkg_data['package_element_count']) + Fore.RESET) #prints package element count
+  print(f"\n" + "Please confirm that the above package is the correct package (" + Fore.GREEN + "y" + Fore.RESET + "/" + Fore.RED + "n" + Fore.RESET + ") : " + Fore.RESET) #prints the confirmation message
+  
+  confirmation = input(f"{Fore.YELLOW}> {Fore.RESET}") #verification input
+  os.system('cls' if os.name == 'nt' else 'clear') #clears the console
+  if confirmation.lower() == "y" : #if the input lowercased equals y
+    remote_pkg_verified = True #verified
+  elif confirmation.lower() == "n" : #if the input lowercased equals n
+    print(f"{Fore.RED}[!] Remote package was not verified by the user !" + Fore.RESET)
+    exit(1)
+  else: #if the input lowercased does not equals y or n
+    print(f"{Fore.RED}[!] Invalid Choice ...." + Fore.RESET) #error
+    exit(1) #error
+  
+  if remote_pkg_verified == True :# if the package is verified by the user
+    os.system('cls' if os.name == 'nt' else 'clear') #clears the console
+    for i in range(int(remote_pkg_data.get('package_element_count', "0"))) : #for loop in the range of package item count
+      filename = remote_pkg_data["elements"][f"file_{i+1}"].get("file_name") #get the respective file name
+      filename = open(filename, 'w') #opens it
+      file_content = remote_pkg_data["elements"][f"file_{i+1}"].get("file_content").encode() #get the encoded respective files content
+      file_content = base64.b64decode(file_content).decode('utf-8') #decodes and changes it into a string
+      print(f"[*] File Created -- {remote_pkg_data['elements'][f'file_{i+1}'].get('file_name')}") #prints the filename along a just created msg
+      filename.write(file_content) #writes the file
+      filename.close() #closes the file
+  else: #if validation is not doen
+    print(f"{Fore.RED}[!] Source action failed ....{Fore.RESET}") #source action error
+    
+    
+    
+establish_remote()
