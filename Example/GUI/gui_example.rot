@@ -5,6 +5,7 @@
 bypassBlock||import customtkinter as ctk
 bypassBlock||ctk.set_appearance_mode("System") 
 bypassBlock||ctk.set_default_color_theme("blue")
+bypassBlock||window.iconbitmap('brain_rot.ico')
 
 make window be ctk.CTk()
 bypassBlock||window.title("Brain-Rot Example Script")
