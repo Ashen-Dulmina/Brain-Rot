@@ -1,0 +1,12 @@
+{
+    "package_name": "Brain-Make Simple Example",
+    "package_author": "@Ashen-Dulmina",
+    "package_version": "1.0",
+    "package_element_count": 1,
+    "elements": {
+        "file_1": {
+            "file_name": "simple_example.rot",
+            "file_content": "LS1BIHNpbXBsZSB0d2hvIG51bWJlciBhZGRlciBidWlsdCB1c2luZyBCcmFpbi1Sb3QNCi0tXGNyZWRpdHMgOiBAQXNoZW4tRHVsbWluYQ0KDQptYWtlIG51bTEgYmUgaW5wdXQoIk51bWJlciAxIDogIikNCm1ha2UgbnVtMiBiZSBpbnB1dCgiTnVtYmVyIDIgOiAiKQ0KbWFrZSBzdW0gYmUgbnVtMSBwbHVTIG51bTINCmZyZWVzcGVlY2h8fHN1bQ=="
+        }
+    }
+}

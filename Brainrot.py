@@ -9,11 +9,13 @@
 # [=] = Update or Notification
 #/credits: @Ashen-Dulmina
 
+from colorama import init, Fore #for fancy cli
 from urllib import request
 import requests
 import sys
 import os
 
+init()
 
 #############################
 #       CheckVersion        #
@@ -21,7 +23,33 @@ import os
 
 def checkVersion(): #Checks if the version is stable and up to date
   localVersion = open("VERSION", 'r').read() #read the local VERSION file for version data
-  remoteVersion = requests.get('https://raw.githubusercontent.com/Ashen-Dulmina/Brain-Rot/main/VERSION').text #read the remote VERSION file for version data
+  try:
+    remoteVersion = requests.get('https://raw.githubusercontent.com/Ashen-Dulmina/Brain-Rot/main/VERSION').text #fetches the json data
+  except requests.exceptions.HTTPError as errh: #on error
+    print(f"{Fore.RED}[!] Http Error!")
+    print(f"{Fore.RED}[^] Contact support via github if this error continues.")
+    print(f"{Fore.RED}[!] {errh.args[0]}")
+    exit(1)
+  except requests.exceptions.RequestException as errex: #on error
+    print(f"{Fore.RED}[!] Exception request!")
+    print(f"{Fore.RED}[^] Contact support via github if this error continues.")
+    print(f"{Fore.RED}[!] {errex}")
+    exit(1)
+  except requests.exceptions.ReadTimeout as errrt: #on error
+    print(f"{Fore.RED}[!] Request timeout!")
+    print(f"{Fore.RED}[^] Contact support via github if this error continues.")
+    print(f"{Fore.RED}[!] {errrt}")
+    exit(1)
+  except requests.exceptions.MissingSchema as errmiss: #on error
+    print(f"{Fore.RED}[!] Missing schema: include http or https!")
+    print(f"{Fore.RED}[^] Contact support via github if this error continues.")
+    print(f"{Fore.RED}[!] {errmiss}")
+    exit(1)
+  except requests.exceptions.ConnectionError as conerr: #on error
+    print(f"{Fore.RED}[!] Connection error!")
+    print(f"{Fore.RED}[^] Contact support via github if this error continues.")
+    print(f"{Fore.RED}[!] {conerr}")
+    exit(1)#read the remote VERSION file for version data
   remoteVersion = remoteVersion.removesuffix('\n') #removes the newline fron the end
   
   if remoteVersion.endswith("b") or remoteVersion.endswith("a"): #if the version is alpha or beta
@@ -137,7 +165,7 @@ def rConvert(): #this function read and converts things into python
       if line.startswith("make"): #if the line startswith make 
         line = line.replace("--", "#") #replace '--' with #
         line = line.replace("make ", "") #replace 'make ' with NULL
-        line = line.replace("be", "=") #replace "be" with "="
+        line = line.replace(" be ", "=") #replace "be" with "="
         line = line.replace("NOCAP", "True") #replace NOCAP with True
         line = line.replace("CAP", "False") #replace CAP with False
         line = line.replace("NOTHING", "None") #replace NOTHING with None

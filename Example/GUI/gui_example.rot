@@ -1,0 +1,39 @@
+--A simple gui built using Brain-Rot
+--Using the python module CustomTkinter
+--\credits : @Ashen-Dulmina
+
+bypassBlock||import customtkinter as ctk
+bypassBlock||ctk.set_appearance_mode("System") 
+bypassBlock||ctk.set_default_color_theme("blue")
+
+make window be ctk.CTk()
+bypassBlock||window.title("Brain-Rot Example Script")
+bypassBlock||window.geometry("300x370")
+
+make label be ctk.CTkLabel(window, text be "Example script Written in Brain-Rot")
+bypassBlock||label.pack(padx=(5, 5), pady=(20, 5))
+
+make button be ctk.CTkButton(window, text be "Test Button")
+bypassBlock||button.pack(padx=(5, 5), pady=(10, 5))
+
+make label1 be ctk.CTkLabel(window, text be "Example Entry")
+bypassBlock||label1.pack(padx=(5, 5), pady=(2, 5))
+
+make entry be ctk.CTkEntry(window, placeholder_text be "Test Entry")
+bypassBlock||entry.pack(padx=(5, 5), pady=(10, 5))
+
+make label2 be ctk.CTkLabel(window, text be "Example Radio Buttons")
+bypassBlock||label2.pack(padx=(5, 5), pady=(2, 5))
+
+make radiobtn1 be ctk.CTkRadioButton(window, text be "Radio btn 1")
+make radiobtn2 be ctk.CTkRadioButton(window, text be "Radio btn 2")
+bypassBlock||radiobtn1.pack(padx=(30, 0), pady=(10, 5))
+bypassBlock||radiobtn2.pack(padx=(30, 0), pady=(10, 5))
+
+make label3 be ctk.CTkLabel(window, text be "Example slider")
+bypassBlock||label3.pack(padx=(5, 5), pady=(10, 5))
+
+make slider be ctk.CTkSlider(window, from_ be 0, to be 20, number_of_steps be 20)
+bypassBlock||slider.pack(padx=(20, 20), pady=(10, 10))
+
+bypassBlock||window.mainloop()
