@@ -1,0 +1,14 @@
+--A simple request api caller built using Brain-Rot
+--Using the python module requests aka. HTTP for humans
+--\credits : @Ashen-Dulmina
+
+bypassBlock||import requests
+
+mindset get_api_data[] (
+  make api_url be "https://catfact.ninja/fact?max_length=100"
+  make api_data be requests.get(api_url).json()
+  make fact be api_data['fact']
+  freespeech||fact
+)
+
+activity get_api_data[]

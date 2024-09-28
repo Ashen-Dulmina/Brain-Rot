@@ -1,0 +1,12 @@
+{
+    "package_name": "Official Brain-Make Requests Example",
+    "package_author": "@Ashen-Dulmina",
+    "package_version": "1.0",
+    "package_element_count": 1,
+    "elements": {
+        "file_1": {
+            "file_name": "requests_example.rot",
+            "file_content": "LS1BIHNpbXBsZSByZXF1ZXN0IGFwaSBjYWxsZXIgYnVpbHQgdXNpbmcgQnJhaW4tUm90DQotLVVzaW5nIHRoZSBweXRob24gbW9kdWxlIHJlcXVlc3RzIGFrYS4gSFRUUCBmb3IgaHVtYW5zDQotLVxjcmVkaXRzIDogQEFzaGVuLUR1bG1pbmENCg0KYnlwYXNzQmxvY2t8fGltcG9ydCByZXF1ZXN0cw0KDQptaW5kc2V0IGdldF9hcGlfZGF0YVtdICgNCiAgbWFrZSBhcGlfdXJsIGJlICJodHRwczovL2NhdGZhY3QubmluamEvZmFjdD9tYXhfbGVuZ3RoPTEwMCINCiAgbWFrZSBhcGlfZGF0YSBiZSByZXF1ZXN0cy5nZXQoYXBpX3VybCkuanNvbigpDQogIG1ha2UgZmFjdCBiZSBhcGlfZGF0YVsnZmFjdCddDQogIGZyZWVzcGVlY2h8fGZhY3QNCikNCg0KYWN0aXZpdHkgZ2V0X2FwaV9kYXRhW10="
+        }
+    }
+}

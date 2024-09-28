@@ -1,0 +1,7 @@
+--A simple twho number adder built using Brain-Rot
+--\credits : @Ashen-Dulmina
+
+make num1 be input("Number 1 : ")
+make num2 be input("Number 2 : ")
+make sum be num1 pluS num2
+freespeech||sum
