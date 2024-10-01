@@ -12,10 +12,20 @@
 from colorama import init, Fore #for fancy cli
 from urllib import request
 import requests
+import json
 import sys
 import os
 
 init()
+
+#############################
+#    Reads settings json    #
+#############################
+
+def get_settings(): #this function read the json data in a given file
+  with open("settings.json", 'r') as file: #open the given file as file
+    data = json.load(file) #loads the json data in the file
+  return data #returns the json data to the caller
 
 #############################
 #       CheckVersion        #
@@ -23,8 +33,9 @@ init()
 
 def checkVersion(): #Checks if the version is stable and up to date
   localVersion = open("VERSION", 'r').read() #read the local VERSION file for version data
+  upd_url = get_settings()["update_settings"].get("version_url") #gets update url from settings.json
   try:
-    remoteVersion = requests.get('https://raw.githubusercontent.com/Ashen-Dulmina/Brain-Rot/main/VERSION').text #fetches the json data
+    remoteVersion = requests.get(upd_url).text #fetches the json data
   except requests.exceptions.HTTPError as errh: #on error
     print(f"{Fore.RED}[!] Http Error!")
     print(f"{Fore.RED}[^] Contact support via github if this error continues.")
@@ -76,8 +87,10 @@ def checkVersion(): #Checks if the version is stable and up to date
 #############################
 
 def checkInternetConnectivity(): #Checks internet Connectivity to check for updates
+  ping_address = get_settings()["connectivity_settings"].get("server") #gets ping address from settings.json
+  timeout = get_settings()["connectivity_settings"].get("timeout") #gets timeout score from settings.json
   try:
-    request.urlopen('https://8.8.8.8', timeout=3) #tries to ping googles DNS server
+    request.urlopen(ping_address, timeout=timeout) #tries to ping the ping address
     return True #is it could return true
   except request.URLError as err:  #if it fails
     return False #is it couldn't return false
@@ -124,8 +137,8 @@ def validateROTfile(): #validates the file before reading and compiling
   #1.the file exists
   #2.the file has '.rot' extention
   #3.the file exists
-  print("[*] Pre-File-Validation Colmpleted !")#return the 1st win flag
-  print("[^] This does not mean the script is verified.")
+  print(f"{Fore.CYAN}[*] Pre-File-Validation Colmpleted !")#return the 1st win flag
+  print(f"{Fore.CYAN}[^] This does not mean the script is verified.")
   print('\n') #prints a newline at the end
   return True #return the 1st stage checks are true
 
@@ -139,7 +152,7 @@ def writeCom(Text : str, Line : int):
   compiledFile = open(f"{sys.argv[2]}.bpy", 'a') #creates the compiled file
   compiledFile.write(f"{Text}"+'\n') #writes the text with a newline
   compiledFile.close() #close the file
-  print(f"[+] {Line} Lines have been Compiled and Written.", end='\r') #print a Line count
+  print(f"{Fore.CYAN}[+] {Fore.MAGENTA}{Line}{Fore.CYAN} Lines have been Compiled and Written.", end='\r') #print a Line count
  
 
 #############################
@@ -438,9 +451,9 @@ def rConvert(): #this function read and converts things into python
     lineCounter += 1 #moves to the next line
     if lineCounter == len(rotFileSys): #if the linecouners value is equal to the number of lines
       print("")
-      print("[+] Compiling Into .bpy Done!")
-      print("[^] You can run your compiled file using the below command")
-      print(f"[-] python {sys.argv[2]}.bpy")
+      print(f"{Fore.CYAN}[+] Compiling Into .bpy Done!")
+      print(f"{Fore.CYAN}[^] You can run your compiled file using the below command")
+      print(f"{Fore.YELLOW}[-] python {sys.argv[2]}.bpy")
       print('\n') #prints a newline at the end
       break #exit the loop
     else: #if the linecouners value is not equal to the number of lines
@@ -453,18 +466,28 @@ def rConvert(): #this function read and converts things into python
 #############################
 
 def runnerController():
+  
   if validateROTfile() == True: #if the file validation is successful
-    if checkInternetConnectivity() == True: #if internet connectivity is ok
-      checkVersion() #chck the version
-    else: #if internet connectivity is not ok
+    if os.path.isfile("settings.json") == False : #if settings dosent file exists
+      print(f"{Fore.RED}[!] Important file missing! : settings.json ") #error
+    else: #if it exists
       pass #continue
+    
+    if get_settings()["update_settings"].get("check_for_updates") == True: #if update settings 
+      if checkInternetConnectivity() == True: #if internet connectivity is ok
+        checkVersion() #chck the version
+      else: #if internet connectivity is not ok
+        pass #continue
+    else:
+      pass
     rConvert() #compile the file
     if sys.argv[3] == "Y" or sys.argv[3] == "y": #if the autorun argument is true
       os.system(f"python {sys.argv[2]}.bpy") #run the file
     elif sys.argv[3] == "N" or sys.argv[3] == "n": #if the autorun argument is false
       pass #continue
   else: #if the file validation fails
-    print("Validation Failed!") #prints that it failed
+    print(f"{Fore.RED}[!] Validation Failed!") #prints that it failed
+    exit(1)
     
 
 runnerController()

@@ -1,0 +1,14 @@
+{
+    "instructions": {
+        "important" : "This file is critical for functioning of brainmake",
+        "instruction" : "Do not modify this file without proper guidance"
+    },
+    "update_settings": {
+        "check_for_updates" : "True",
+        "version_url" : "https://raw.githubusercontent.com/Ashen-Dulmina/Brain-Rot/main/VERSION"
+    },
+    "connectivity_settings": {
+        "server" : "https://8.8.8.8",
+        "timeout" : 3
+    }
+}
