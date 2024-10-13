@@ -70,12 +70,12 @@ def checkVersion(): #Checks if the version is stable and up to date
     remoteVersion = remoteVersion.split("-") #plits the linr from the '-'
     
     if float(localVersion[0]) < float(remoteVersion[0]) : #if the local version is lower than the latest release
-      print(f"[=] Your Current Version is {localVersion[0]}-{localVersion[1]}.") #prints the current version
-      print(f"[=] The Latest Release is {remoteVersion[0]}-{remoteVersion[1]}.") #prints the remote version
-      print(f"[=] Please Update to Version {remoteVersion[0]}-{remoteVersion[1]} for New Features and Major Bug Fixes.") #pints the update notice
+      print(f"{Fore.YELLOW}[=] Your Current Version is {Fore.MAGENTA}{localVersion[0]}-{localVersion[1]}.") #prints the current version
+      print(f"{Fore.YELLOW}[=] The Latest Release is {Fore.MAGENTA}{remoteVersion[0]}-{remoteVersion[1]}.") #prints the remote version
+      print(f"{Fore.YELLOW}[=] Please Update to Version {Fore.MAGENTA}{remoteVersion[0]}-{remoteVersion[1]} {Fore.YELLOW}for New Features and Major Bug Fixes.") #pints the update notice
       print('\n') #prints a newline at the end
     elif float(localVersion[0]) == float(remoteVersion[0]) : #if the local version is the latest release
-      print("[=] Your are Up-to-Date !")
+      print(f"{Fore.GREEN}[=] Your are Up-to-Date !")
       print('\n') #prints a newline at the end
     else: #if the version somehow greater to date
       pass #continue
@@ -103,31 +103,31 @@ def checkInternetConnectivity(): #Checks internet Connectivity to check for upda
 
 def validateROTfile(): #validates the file before reading and compiling
   if len(sys.argv) < 4 : #checks if the number of arguments is less than 2
-    print("[!] Minus Aura detected ! ...")
-    print("[!] Brainrot Compiler needs one or more arguments to oparate.")
-    print("[!] No argument has been passed to the compiler.")
-    print("[-] Brainrot <filename.rot> <compiled_file name> <autorun(y or n)>") #error message for no arguments
-    print("[^] Better luck next time..")
+    print(f"{Fore.RED}[!] Minus Aura detected ! ...")
+    print(f"{Fore.RED}[!] Brainrot Compiler needs one or more arguments to oparate.")
+    print(f"{Fore.RED}[!] No argument has been passed to the compiler.")
+    print(f"{Fore.CYAN}[-] Brainrot <filename.rot> <compiled_file name> <autorun(y or n)>") #error message for no arguments
+    print(f"{Fore.YELLOW}[^] Better luck next time..")
     exit(1) #exits the program code - 1
   else: #if the number of arguments are greater than 2 or equal to 2
     pass #continues to function
   
   rotFileSys = sys.argv[1] #takes the argument
   if rotFileSys.endswith(".rot") == False: #if the argument does not end with '.rot'
-    print("[!] Minus Aura detected ! ...")
-    print("[!] Invalid argument passed! ... ")
-    print(f"[!] Minus Aura detected on : {rotFileSys} : invalid extention.") #error message for invalid extention
-    print("[^] Only files with '.rot' extention is supported.")
+    print(f"{Fore.RED}[!] Minus Aura detected ! ...")
+    print(f"{Fore.RED}[!] Invalid argument passed! ... ")
+    print(f"{Fore.RED}[!] Minus Aura detected on : {rotFileSys} : invalid extention.") #error message for invalid extention
+    print(f"{Fore.YELLOW}[^] Only files with '.rot' extention is supported.")
     exit(1)
   else: #if argument ends with '.rot'
     pass #continues to function
   
   if os.path.isfile(rotFileSys) == False: #if the file does not exist
-    print("[!] Minus Aura detected ! ...")
-    print("[!] The file mentioned does not exist.")
-    print(f"[!] Minus Aura detected on : {rotFileSys} : invalid file.") #error message for invalid file name
-    print("[^] Brainrot Compiler only support existing files.")
-    print("[^] If you want to compile your imaginary bullshit, this is not your place.")
+    print(f"{Fore.RED}[!] Minus Aura detected ! ...")
+    print(f"{Fore.RED}[!] The file mentioned does not exist.")
+    print(f"{Fore.RED}[!] Minus Aura detected on : {rotFileSys} : invalid file.") #error message for invalid file name
+    print(f"{Fore.YELLOW}[^] Brainrot Compiler only support existing files.")
+    print(f"{Fore.YELLOW}[^] If you want to compile your imaginary bullshit, this is not your place.")
     exit(1)
   else: #if the file existp
     pass #continues to function
