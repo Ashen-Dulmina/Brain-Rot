@@ -162,7 +162,7 @@ def writeCom(Text : str, Line : int):
 def rConvert(): #this function read and converts things into python
   lineCounter = 0 #the line counter component
   
-  while True:
+  while True: 
     rotFileSys = open(sys.argv[1], 'r').readlines() #gets the rot file from args and reads it line by line
     
     def detectVariables(lineTOscan : str, XCount : int): #scans the passed line for a possible variable
@@ -466,6 +466,8 @@ def rConvert(): #this function read and converts things into python
 #############################
 
 def runnerController():
+  currentTerminalRoot = os.getcwd() #get current working directory
+  os.chdir(currentTerminalRoot) #change cwd
   
   if validateROTfile() == True: #if the file validation is successful
     if os.path.isfile("settings.json") == False : #if settings dosent file exists
