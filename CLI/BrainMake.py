@@ -445,6 +445,8 @@ def unargumented_Handler(): #cli with full guide for noobs
 
 def run_Handler(): #handles the whole thing
   os.system('cls' if os.name == 'nt' else 'clear') #clears the console
+  currentTerminalRoot = os.getcwd() #get current working directory
+  os.chdir(currentTerminalRoot) #change cwd
   
   helpA = ["-h", "--help", "help"] #define help arguments
   initI = ["-i", "--initialize", "--init", "initialize", "init"] #define init arguments
