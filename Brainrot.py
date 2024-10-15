@@ -106,7 +106,7 @@ def validateROTfile(): #validates the file before reading and compiling
     print(f"{Fore.RED}[!] Minus Aura detected ! ...")
     print(f"{Fore.RED}[!] Brainrot Compiler needs one or more arguments to oparate.")
     print(f"{Fore.RED}[!] No argument has been passed to the compiler.")
-    print(f"{Fore.CYAN}[-] Brainrot <filename.rot> <compiled_file name> <autorun(y or n)>") #error message for no arguments
+    print(f"{Fore.CYAN}[-] brainrot <filename.rot> <compiled_file_name> <autorun(y or n)>") #error message for no arguments
     print(f"{Fore.YELLOW}[^] Better luck next time..")
     exit(1) #exits the program code - 1
   else: #if the number of arguments are greater than 2 or equal to 2
