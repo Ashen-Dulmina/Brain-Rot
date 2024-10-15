@@ -25,9 +25,26 @@ The variable's syntax structure consist of 2 required syntaxes. They are `make` 
 
 For Example :
 
-When you use the below line
+When you use the below line in your code...
 ```brainrot
 make this be "Toby be Updog" 
+```
+...It might get translated into something like this...
+```brainrot
+this = "Toby = Updog"
+```
+...by the converter.
+
+### <u>**2.2.2 Variables Have Intergrated `bypassBlock` Support.**</u>
+<img src="./Assets/advance_warning.png" alt="Read this part only after reading the bypassblocks documentation but for beginers ignoring this rule would be fine as it cointains infomation needed when advancing more using Brain-rot.">
+
+Like `freespeech` variables also have integrated `bypassBlock` support so it won't need any additional statements for that.
+
+Example :
+```brainrot
+make example_var be bypassBlock||sys.argv[1] --wrong/error
+
+make example_var br sys.argv[1] --correct
 ```
 
 <br>
@@ -37,4 +54,4 @@ make this be "Toby be Updog"
 #
 # <center>_**The End of This Page**_</center>
 
-#### <center align="right">[Next >>](./compiler_and_cli.md)</center>
+#### <center align="right">[Next >>](./comments.md)</center>

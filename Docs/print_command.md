@@ -41,8 +41,8 @@ Output :
 1234
 ```
 
-### <u>**1.2.3 `freespeech` Has intergrated `bypassBlock`s .**</u>
-<img src="" alt="Read this part only after reading the bypassblocks documentation but for beginers ignoring this rule would be fine as it cointains infomation needed when advancing more using Brain-rot.">
+### <u>**1.2.3 `freespeech` Has intergrated `bypassBlock` Support.**</u>
+<img src="./Assets/advance_warning.png" alt="Read this part only after reading the bypassblocks documentation but for beginers ignoring this rule would be fine as it cointains infomation needed when advancing more using Brain-rot.">
 
 When using `bypassBlock`s with print command don't use `bypassBlock`s seperately. Instead use the `bypass Block`s without using the `bypassBlock` command. `freespeech` has integrated `bypassBlock` support.
 
