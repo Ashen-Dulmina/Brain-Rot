@@ -14,7 +14,7 @@ Brain-rot has a compiler but it interprits the code and reads it. then it conver
 Brainrot uses 2 defined file extentions. they are `.rot` and `.bpy `. the files with `.rot` extentions contains the your code that should be sent to the compiler while `.bpy` is just a normal python file which is generated after the compiler read the code. you can use python to run that file. A little something for a fact is that `.bpy ` stands for `brain dead python` .
 
 <br>
-<br>
+<h5 align="right">© Official Brain-Rot Doucumentation.</h5>
 <br>
 
 #

@@ -1,5 +1,5 @@
 <br>
-<br>
+<h5 align="right">© Official Brain-Rot Doucumentation.</h5>
 <br>
 
 #

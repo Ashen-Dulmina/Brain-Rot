@@ -49,7 +49,7 @@ brainmake <-h, -i, -c>
 `-c`, `--convert`, `--conv`, `convert`, `conv` :  Generate your own template or package from written code.
 
 <br>
-<br>
+<h5 align="right">© Official Brain-Rot Doucumentation.</h5>
 <br>
 
 #

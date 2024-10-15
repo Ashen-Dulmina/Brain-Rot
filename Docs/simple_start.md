@@ -41,11 +41,12 @@ python <filename.bpy>
 Now that you have an idea on how to get started using Brain-rot you might want to write your own code. Read the documentaton further and learn how to code in Brain-rot and once your code is ready compile it and give it a go.
 
 **<u>But remember that you have to delete the pre-compiled file every time before the code is compiled again</u>**
+
 <br>
-<br>
+<h5 align="right">© Official Brain-Rot Doucumentation.</h5>
 <br>
 
 #
 # <center>_**The End of This Page**_</center>
 
-#### <center align="right">[Next >>](./variables.md)</center>
+#### <center align="right">[Next >>](./print_command.md)</center>

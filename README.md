@@ -1,4 +1,4 @@
-# Brain-Rot
+# <center>**Brain-Rot**</center>
 Brain-rot is a programming language designed for creatures/living beings/organisms(species : _Homo-sapiens_) of the "gen Alpha" and late "gen Z" to match their unique vocabulary and unidentified phrases. 
 (**_This is a meme project_**)
 
@@ -22,14 +22,13 @@ Honestly, except for the reason in question 1 a similar project from **[Infroid_
 This language is neither a compiled nor an interpreted language. this language is what i would call a I-C-C-I language. ICCI stands for Interprit-Convert-Compile-Interprit.
 
 ## Important Links.
-[`Documentation`](https://github.com/Ashen-Dulmina/Brain-Rot/blob/main/Docs/intro.md)
+[`Documentation`](./Docs/intro.md)
 
 [`Download`](https://github.com/Ashen-Dulmina/Brain-Rot)
 
-[`External Credits`](https://github.com/Ashen-Dulmina/Brain-Rot/blob/main/Docs/external_credits.md)
+[`External Credits`](./Docs/external_credits.md)
 
 ## Special Thanks And Credits
 **[Infroid_Coder](https://github.com/Infroid-Coder)** - For the support on syntax suggession.
 
-**[Oshan-Dilmina](https://github.com/Oshan-Dilmina)** - For addressing major bugs and writing the VScode extention to make it easier to code in brainrot
-.
+**[Oshan-Dilmina](https://github.com/Oshan-Dilmina)** - For addressing major bugs and writing the VScode extention to make it easier to code in brainrot.
