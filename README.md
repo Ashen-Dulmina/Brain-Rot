@@ -1,5 +1,7 @@
 <center><img src="./Docs/Assets/brainrot_bannar.png" alt="Readme Bannarr"></center>
 
+![Views Counter](https://views-counter.vercel.app/badge?pageId=https%3A%2F%2Fgithub%2Ecom%2FAshen-dulmina%2FBrain-rot&leftColor=000000&rightColor=c90d58&type=total&label=Views&style=none)
+
 # **Brain-Rot**
 Brain-rot is a programming language designed for creatures/living beings/organisms(species : _Homo-sapiens_) of the "gen Alpha" and late "gen Z" to match their unique vocabulary and unidentified phrases. 
 (**_This is a meme project_**)

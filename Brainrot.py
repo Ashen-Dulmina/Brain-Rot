@@ -251,6 +251,7 @@ def rConvert(): #this function read and converts things into python
         iline = iline.replace("[", "") #replace [ with Null
         iline = iline.replace("]", "") #replace ] with Null
         iline = iline.replace("iz", "==") #replace iz with ==
+        iline = iline.replace("izNOT", "!=") #replace izNOT with !=
         iline = iline.replace("NOCAP", "True") #replace NOCAP with True
         iline = iline.replace("CAP", "False") #replace CAP with False
         iline = iline.replace("NOTHING", "None") #replace NOTHING with None
@@ -305,6 +306,7 @@ def rConvert(): #this function read and converts things into python
         eiline = eiline.replace("[", "") #replace [ with Null
         eiline = eiline.replace("]", "") #replace ] with Null
         eiline = eiline.replace("iz", "==") #replace iz with ==
+        eiline = eiline.replace("izNOT", "!=") #replace izNOT with !=
         eiline = eiline.replace("NOCAP", "True") #replace NOCAP with True
         eiline = eiline.replace("CAP", "False") #replace CAP with False
         eiline = eiline.replace("NOTHING", "None") #replace NOTHING with None

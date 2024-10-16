@@ -38,7 +38,7 @@ python <filename.bpy>
 <br>
 
 ## Writing your own code.
-Now that you have an idea on how to get started using Brain-rot you might want to write your own code. Read the documentaton further and learn how to code in Brain-rot and once your code is ready compile it and give it a go.
+Now that you have an idea on how to get started using Brain-rot you might want to write your own code. Read the documentaton further and learn how to code in Brain-rot and once your code is ready compile it and give it a go. **_But make sure your tabspaces are set to 2 spaces._**
 
 **<u>But remember that you have to delete the pre-compiled file every time before the code is compiled again</u>**
 

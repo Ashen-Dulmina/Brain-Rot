@@ -14,11 +14,11 @@ brainrot <filename.rot> <compiled_file_name> <autorun(y or n)>
 The compiled_file_name should be passed without any extention and if there are spaces in your filename you should enclose your file name in dual quotes.
 
 ### <u>Compiler argument guide</u>
-`<filename>` :   The name of the file containing the code.
+- `<filename>` :   The name of the file containing the code.
 
-`<compiled_file_name>` : The name that the compiled output file should be named
+- `<compiled_file_name>` : The name that the compiled output file should be named
 
-`<autorun>` :  Desides if the file is automatically ran by the compiler or not.
+- `<autorun>` :  Desides if the file is automatically ran by the compiler or not.
 **!! ONLY ACCEPTS "y" OR "n" INPUTS STANDING  FOR "yes" OR "no" !!.**
 
 ## <u>CLI Tool</u>
@@ -42,11 +42,11 @@ brainmake <-h, -i, -c>
 ```
 
 ### <u>CLI argument guide</u>
-`-h`, `--help`, `help` :    Displays help menue.
+- `-h`, `--help`, `help` :    Displays help menue.
 
-`-i`, `--initialize`, `--init`, `initialize`, `init` : Make/Initialize new project.
+- `-i`, `--initialize`, `--init`, `initialize`, `init` : Make/Initialize new project.
 
-`-c`, `--convert`, `--conv`, `convert`, `conv` :  Generate your own template or package from written code.
+- `-c`, `--convert`, `--conv`, `convert`, `conv` :  Generate your own template or package from written code.
 
 <br>
 <h5 align="right">© Official Brain-Rot Doucumentation.</h5>

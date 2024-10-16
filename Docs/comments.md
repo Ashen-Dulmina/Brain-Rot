@@ -18,4 +18,4 @@ freespeech||"test" --comment on the same line
 #
 # <center>_**The End of This Page**_</center>
 
-#### <center align="right">[Next >>](./comments.md)</center>
+#### <center align="right">[Next >>](./basic_math.md)</center>
