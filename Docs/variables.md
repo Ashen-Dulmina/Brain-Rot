@@ -36,7 +36,7 @@ this = "Toby = Updog"
 ...by the converter.
 
 ### <u>**2.2.2 Variables Have Intergrated `bypassBlock` Support.**</u>
-<img src="./Assets/advance_warning.png" alt="Read this part only after reading the bypassblocks documentation but for beginers ignoring this rule would be fine as it cointains infomation needed when advancing more using Brain-rot.">
+<img src="./Assets/advance_warning.png" alt="Read this part only after reading the bypassblocks documentation but for beginers ignoring this rule would be fine as it cointains infomation needed when advancing more using Brain-rot." height="150">
 
 Like `freespeech` variables also have integrated `bypassBlock` support so it won't need any additional statements for that.
 
