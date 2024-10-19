@@ -5,8 +5,8 @@ This is a breif introduction to starting to code using brainrot. this will give 
 ## Language's working method.
 Most of the languages out there are either compiled or interpreted languages but brain rot on the other hand uses the **ICCI** method.
 
-<img src="./Assets/icci-definition.png
-" alt="Definition of ICCI">
+<center><img src="./Assets/icci-definition.png
+" alt="Definition of ICCI" height="300"></center>
 
 Brain-rot has a compiler but it interprits the code and reads it. then it converts the file from the languages syntax structure(Infroid format) to the python syntaxes line by line. then the lines are written into a python file and then uns the python file. the python interpriter then interprits the code and runs it in the python virtual mashine.
 
